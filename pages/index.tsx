@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { UserCard } from '../components/UserCard';
 import { getUsers } from '../utilities/api';
 import { User } from '../utilities/users';
+import { Select } from '@mantine/core';
 
 
 export default function HomePage() {
@@ -12,8 +13,28 @@ export default function HomePage() {
     getUsers().then(setUsers).catch(console.log)
   }, []);
 
+  function sortUsers(property: string) {
+    if (!property) return
+    const sortedUsers = [...users].sort((a: any,b: any)=> {
+      return b[property] - a[property]
+    })
+    setUsers(sortedUsers)
+  }
+
   return (
     <>
+      <Select
+        onChange={e => sortUsers(String(e))}
+        label="Ordenação"
+        placeholder="Escolha um"
+        data={[
+          { value: 'steps', label: 'Passos' },
+          { value: 'interactions', label: 'Interações' },
+          { value: 'timeOnlineInMinutes', label: 'Tempo online' },
+          { value: 'messages', label: 'Mensagens' },
+          { value: 'isOnline', label: 'Online' },
+        ]}
+      />
       <SimpleGrid cols={3}>
         {users && users.map(user => <UserCard user={user} />)}
       </SimpleGrid>
