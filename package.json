@@ -1,5 +1,5 @@
 {
-  "name": "mantine-next-template",
+  "name": "codecon-gather-frontend",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -18,7 +18,9 @@
     "@mantine/next": "3.6.7",
     "@mantine/notifications": "3.6.7",
     "@mantine/prism": "3.6.7",
+    "axios": "^0.26.1",
     "dayjs": "^1.10.7",
+    "mongoose": "^6.2.5",
     "next": "12.0.7",
     "prism-react-renderer": "^1.2.1",
     "react": "17.0.2",

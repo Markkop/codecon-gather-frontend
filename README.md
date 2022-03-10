@@ -1,5 +1,3 @@
-# Mantine Next Template
+# 🌃 Codecon-Gather API Frontend
 
-Get started with Mantine + Next with just a few button clicks.
-Click `Use this template` button at the header of repository or [follow this link](https://github.com/mantinedev/mantine-next-template/generate) and
-create new repository with all @mantine packages.
+A fast prototype project to show the analytics collected from the Codecon Gather API integration
