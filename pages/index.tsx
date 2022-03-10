@@ -35,7 +35,15 @@ export default function HomePage() {
           { value: 'isOnline', label: 'Online' },
         ]}
       />
-      <SimpleGrid cols={3}>
+      <SimpleGrid
+        cols={4}
+        spacing="lg"
+        breakpoints={[
+          { maxWidth: 'md', cols: 3, spacing: 'md' },
+          { maxWidth: 'sm', cols: 2, spacing: 'sm' },
+          { maxWidth: 'xs', cols: 1, spacing: 'sm' },
+        ]}
+      >
         {users && users.map(user => <UserCard user={user} />)}
       </SimpleGrid>
     </>
