@@ -3,35 +3,44 @@ import { User } from '../utilities/users';
 
 type Props = {
   user: User;
+  space: string;
 };
 
-export function UserCard({ user }: Props) {
+export function UserCard({ user, space }: Props) {
   const theme = useMantineTheme();
+  const userSpace = user.spaces![space];
 
-  const secondaryColor = theme.colorScheme === 'dark'
-    ? theme.colors.dark[1]
-    : theme.colors.gray[7];
+  const secondaryColor = theme.colorScheme === 'dark' ? theme.colors.dark[1] : theme.colors.gray[7];
 
   return (
     <div style={{ width: 340, margin: 'auto' }}>
       <Card shadow="sm">
-      <Card.Section>
-          <Image src={`https://robohash.org/${user.gatherPlayerId}`} height={160} alt={user.gatherName} />
+        <Card.Section>
+          <Image
+            src={`https://robohash.org/${user.gatherPlayerId}`}
+            height={160}
+            alt={user.gatherName}
+          />
         </Card.Section>
 
         <Group position="apart" style={{ marginBottom: 5, marginTop: theme.spacing.sm }}>
           <Text weight={500}>{user.gatherName}</Text>
-          {user.isOnline && <Badge color="green" variant="light">
-            Online
-          </Badge>}
+          {userSpace.isOnline && (
+            <Badge color="green" variant="light">
+              Online
+            </Badge>
+          )}
         </Group>
 
         <Text size="sm" style={{ color: secondaryColor, lineHeight: 1.5 }}>
           <ul>
-            <li>Passos: {user.steps}</li>
-            <li>Interações: {user.interactions} {`(${user.objectInteractions?.length} objetos)`}</li>
-            <li>Mensagens: {user.messages}</li>
-            <li>Tempo Online: {user.timeOnlineInMinutes?.toFixed(0)} minutos</li>
+            <li>Passos: {userSpace.steps}</li>
+            <li>
+              Interações: {userSpace.interactions}{' '}
+              {`(${userSpace.objectInteractions?.length} objetos)`}
+            </li>
+            <li>Mensagens: {userSpace.messages}</li>
+            <li>Tempo Online: {userSpace.timeOnlineInMinutes?.toFixed(0)} minutos</li>
           </ul>
         </Text>
       </Card>

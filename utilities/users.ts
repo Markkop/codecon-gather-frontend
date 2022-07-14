@@ -1,15 +1,14 @@
 import { connection, connect } from 'mongoose';
 import UserModel from '../models/users';
 
+
 export type ObjectInteraction = {
   objectId: string,
   mapId: string,
   count: number
-};
+}
 
-export type User = {
-  gatherPlayerId: string
-  gatherName: string
+export type Stats = {
   steps?: number,
   interactions?: number,
   objectInteractions?: ObjectInteraction[],
@@ -18,7 +17,15 @@ export type User = {
   lastJoined?: number,
   lastExited?: number,
   timeOnlineInMinutes?: number
-};
+}
+
+export type SpaceStats = Record<string, Stats>
+
+export type User = {
+  gatherPlayerId: string
+  gatherName: string
+  spaces?: SpaceStats
+}
 
 async function connectDatabase() {
   try {
