@@ -4,11 +4,12 @@ import { User } from '../utilities/users';
 type Props = {
   user: User;
   space: string;
+  date: string
 };
 
-export function UserCard({ user, space }: Props) {
+export function UserCard({ user, space, date }: Props) {
   const theme = useMantineTheme();
-  const userSpace = user.spaces![space];
+  const userSpace = user.spacesByDate[date][space];
 
   const secondaryColor = theme.colorScheme === 'dark' ? theme.colors.dark[1] : theme.colors.gray[7];
 

@@ -21,16 +21,18 @@ export type Stats = {
 
 export type SpaceStats = Record<string, Stats>
 
+export type SpacesByDate = Record<string, SpaceStats>
+
 export type User = {
   gatherPlayerId: string
   gatherName: string
-  spaces?: SpaceStats
+  spacesByDate: SpacesByDate
 }
 
 async function connectDatabase() {
   try {
     if (connection.readyState === 0) {
-      connect(`mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_PASSWORD}@${process.env.MONGODB_URL}/gather?retryWrites=true&w=majority`);
+      connect(`mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_PASSWORD}@${process.env.MONGODB_URL}/gather-dev?retryWrites=true&w=majority`);
     }
   } catch (error) {
     console.log(error);
