@@ -7,6 +7,7 @@ export default async function handler(
 ) {
   try {
     const users = await getAllUsers()
+    console.log(JSON.stringify(users))
     if (!users) {
       res.status(200).json([])
       return
