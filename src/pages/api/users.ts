@@ -1,11 +1,13 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { getAllUsers, User } from '../../utilities/users'
+import { User } from '../../types/user'
+import { getAllUsers } from '../../utilities/database'
 
-export default async function handler(
+export default async function handler (
   req: NextApiRequest,
   res: NextApiResponse<User[]>
 ) {
   try {
+    console.log('opa')
     const users = await getAllUsers()
     if (!users) {
       res.status(200).json([])

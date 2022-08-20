@@ -1,6 +1,5 @@
-import mongoose from 'mongoose';
-import { Schema } from 'mongoose'
-import { User } from '../utilities/users'
+import mongoose, { Schema } from 'mongoose'
+import { User } from '../types/user'
 
 const UserSchema = new Schema<User>({
   gatherPlayerId: {
@@ -16,4 +15,6 @@ const UserSchema = new Schema<User>({
   }
 })
 
-export default mongoose.models.User || mongoose.model('User', UserSchema)
+console.log(mongoose.models)
+
+export default mongoose?.models?.User || mongoose.model('User', UserSchema)

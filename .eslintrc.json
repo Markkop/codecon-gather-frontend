@@ -1,0 +1,19 @@
+{
+  "env": {
+    "jest": true
+  },
+  "plugins": ["@typescript-eslint", "tailwindcss"],
+  "extends": [
+    "next/core-web-vitals",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:tailwindcss/recommended",
+    "standard", 
+    "standard-jsx"
+  ],
+  "rules": {
+    "semi": [2, "never"],
+    "@typescript-eslint/indent": ["error", 2],
+    "react-hooks/exhaustive-deps": "off",
+    "react/react-in-jsx-scope": "off"
+  }
+}
