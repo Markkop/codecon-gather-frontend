@@ -1,9 +1,7 @@
-import { Title, Text, Anchor, SimpleGrid } from '@mantine/core';
 import { useEffect, useState } from 'react';
 import { UserCard } from '../components/UserCard';
 import { getUsers } from '../utilities/api';
 import { User } from '../utilities/users';
-import { Select } from '@mantine/core';
 
 export default function HomePage() {
   const [users, setUsers] = useState<User[]>([]);
@@ -38,7 +36,7 @@ export default function HomePage() {
         const userDateSpacesKeys = Object.keys(userDateSpaces || {});
         const allDateSpaces = dateSpaces.concat(userDateSpacesKeys);
         return [...new Set(allDateSpaces)];
-      }, [])
+      }, []) as any
       const allSpaces = spaces.concat(dateSpaces);
       return [...new Set(allSpaces)];
     }, []);
@@ -55,7 +53,7 @@ export default function HomePage() {
           {spaces.map((space) => (
             <div key={space}>
               {space}
-              <Select
+              {/* <Select
                 onChange={(e) => sortUsers(String(e))}
                 label="Ordenação"
                 placeholder="Escolha um"
@@ -66,23 +64,15 @@ export default function HomePage() {
                   { value: 'messages', label: 'Mensagens' },
                   { value: 'isOnline', label: 'Online' },
                 ]}
-              />
-              <SimpleGrid
-                cols={4}
-                spacing="lg"
-                breakpoints={[
-                  { maxWidth: 'md', cols: 3, spacing: 'md' },
-                  { maxWidth: 'sm', cols: 2, spacing: 'sm' },
-                  { maxWidth: 'xs', cols: 1, spacing: 'sm' },
-                ]}
-              >
-                {users &&
+              /> */}
+              <div className='grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3'>
+              {users &&
                   users
                     .filter((user) => {
                       return user.spacesByDate && user.spacesByDate[date][space];
                     })
                     .map((user) => <UserCard user={user} space={space} date={date} />)}
-              </SimpleGrid>
+              </div>
             </div>
           ))}
         </div>

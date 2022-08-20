@@ -32,7 +32,9 @@ export type User = {
 async function connectDatabase() {
   try {
     if (connection.readyState === 0) {
-      connect(`mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_PASSWORD}@${process.env.MONGODB_URL}/gather-prod?retryWrites=true&w=majority`);
+      const isProd = process.env.IS_ON_VERCEL === 'true'
+      const env = isProd ? 'prod' : 'dev'
+      connect(`mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_PASSWORD}@${process.env.MONGODB_URL}/gather-${env}?retryWrites=true&w=majority`);
     }
   } catch (error) {
     console.log(error);
