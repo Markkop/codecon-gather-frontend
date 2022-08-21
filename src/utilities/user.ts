@@ -1,6 +1,9 @@
 import { User } from '../types/user'
 
 export function getUserSpaceStatsByDate (user: User, date: string) {
+  if (!user.spacesByDate[date]) {
+    return []
+  }
   return Object.entries(user.spacesByDate[date]).map(([spaceName, spaceStats]) => ({
     spaceName,
     steps: spaceStats.steps || 0,
@@ -30,6 +33,37 @@ export function getAllTimeUserSpaceStats (user: User) {
 export function getAllTimeSpaceStats (users: User[]) {
   const allSpacesStatsForAllUsers = users.map(user => getAllTimeUserSpaceStats(user)).flat()
   return allSpacesStatsForAllUsers.reduce((acc, spaceStats) => {
+    const space = acc.find(space => space.spaceName === spaceStats.spaceName)
+    const spaceStatsWithStandsCount = {
+      ...spaceStats,
+      stands: (spaceStats.standsVisited || []).reduce((stands, stand) => ({
+        ...stands,
+        [stand]: 1
+      }), {})
+    }
+    if (!space) {
+      return acc.concat({
+        ...spaceStatsWithStandsCount,
+        uniqueVisitors: 1
+      })
+    }
+
+    space.steps += spaceStats.steps || 0
+    space.interactions += spaceStats.interactions || 0
+    space.messages += spaceStats.messages || 0
+    space.timeOnlineInMinutes += spaceStats.timeOnlineInMinutes || 0
+    space.stands = (spaceStats.standsVisited || []).reduce((stands, stand) => ({
+      ...stands,
+      [stand]: (space.stands[stand] || 0) + 1
+    }), space.stands)
+    space.uniqueVisitors += 1
+    return acc
+  }, [])
+}
+
+export function getSpaceStatsByDate (users: User[], date: string) {
+  const allUserSpacesStatsByDate = users.map(user => getUserSpaceStatsByDate(user, date)).flat()
+  return allUserSpacesStatsByDate.reduce((acc, spaceStats) => {
     const space = acc.find(space => space.spaceName === spaceStats.spaceName)
     const spaceStatsWithStandsCount = {
       ...spaceStats,
@@ -100,6 +134,16 @@ export function getDates (users: User[]) {
 
 export function getStandStats (users: User[]) {
   const allTimeUserSpaceStats = getAllTimeSpaceStats(users)
+  return allTimeUserSpaceStats.reduce((acc, space) => {
+    return acc.concat(Object.entries(space.stands).map(([standName, uniqueVisitors]) => ({
+      standName,
+      uniqueVisitors
+    })))
+  }, [])
+}
+
+export function getStandStatsByDate (users: User[], date: string) {
+  const allTimeUserSpaceStats = getSpaceStatsByDate(users, date)
   return allTimeUserSpaceStats.reduce((acc, space) => {
     return acc.concat(Object.entries(space.stands).map(([standName, uniqueVisitors]) => ({
       standName,

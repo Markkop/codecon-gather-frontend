@@ -1,5 +1,5 @@
 import { User } from '../types/user'
-import { getStandStats } from '../utilities/user'
+import { getStandStats, getStandStatsByDate } from '../utilities/user'
 
 const standImages = {
   LinuxTips: 'https://i.imgur.com/kzTWqxn.png',
@@ -12,18 +12,19 @@ const standImages = {
   'Casa do Código': 'https://i.imgur.com/VpE9tdC.png',
   Gather: 'https://i.imgur.com/0e3aTd7.png',
   JetBrains: 'https://i.imgur.com/0vwsF2z.png',
-  seila: 'https://i.imgur.com/UZ3HRBd.png',
+  'X-Team': 'https://i.imgur.com/UZ3HRBd.png',
   Revelo: 'https://i.imgur.com/TZD3WyR.png',
   GbTech: 'https://i.imgur.com/ncXDpRS.png',
   default: 'https://cdn.gather.town/storage.googleapis.com/gather-town.appspot.com/uploads/DfVMRgRjpjJSoK5y/8IQHEaoJOpogX22xI30T8U'
 }
 
 type StandStatsProps = {
-  users: User[]
+  users: User[],
+  date?: string
 }
 
-export function StandStats ({ users }: StandStatsProps) {
-  const stands = getStandStats(users)
+export function StandStats ({ users, date }: StandStatsProps) {
+  const stands = date ? getStandStatsByDate(users, date) : getStandStats(users)
   return (
     <section>
       <h1>Stands Stats</h1>
