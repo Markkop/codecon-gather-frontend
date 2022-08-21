@@ -1,4 +1,4 @@
-import { User } from '../utilities/users';
+import { User } from '../types/user'
 
 type Props = {
   user: User;
@@ -6,19 +6,18 @@ type Props = {
   date: string
 };
 
-export function UserCard({ user, space, date }: Props) {
-
-  const userSpace = user.spacesByDate[date][space];
+export function UserCard ({ user, space, date }: Props) {
+  const userSpace = user.spacesByDate[date][space]
 
   return (
-    <div className="card w-96 bg-base-100 shadow-xl">
+    <div className='card w-96 bg-base-100 shadow-xl'>
       <figure><img src={`https://robohash.org/${user.gatherPlayerId}`} alt={user.gatherName} /></figure>
-      <div className="card-body">
-        <h2 className="card-title">
+      <div className='card-body'>
+        <h2 className='card-title'>
           {user.gatherName}
-            {userSpace.isOnline && (
-              <div className="badge bg-green-600">ONLINE</div>
-            )}
+          {userSpace.isOnline && (
+            <div className='badge bg-green-600'>ONLINE</div>
+          )}
         </h2>
         <ul>
           <li>Passos: {userSpace.steps}</li>
