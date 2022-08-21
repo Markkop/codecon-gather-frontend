@@ -42,9 +42,9 @@ export function AllTimeSpacesStats ({ users }: AllTimeSpacesStatsProps) {
                 </h2>
                 <ul>
 
-                  <li>👣 {space.steps}</li>
-                  <li>🤏 {space.interactions}</li>
-                  <li>💬 {space.messages}</li>
+                  <li>👣 {space.steps || 0}</li>
+                  <li>🤏 {space.interactions || 0}</li>
+                  <li>💬 {space.messages || 0}</li>
                   <li>🕒 {space.timeOnlineInMinutes?.toFixed(0)} min</li>
                 </ul>
               </div>

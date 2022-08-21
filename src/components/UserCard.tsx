@@ -20,9 +20,9 @@ export function UserCard ({ user, space, date }: Props) {
           )}
         </h2>
         <ul>
-          <li>👣 {userSpace.steps}</li>
-          <li>🤏 {userSpace.interactions}</li>
-          <li>💬 {userSpace.messages}</li>
+          <li>👣 {userSpace.steps || 0}</li>
+          <li>🤏 {userSpace.interactions || 0}</li>
+          <li>💬 {userSpace.messages || 0}</li>
           <li>🕒 {userSpace.timeOnlineInMinutes?.toFixed(0)} min</li>
         </ul>
       </div>
