@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { AllTimeSpacesStats } from '../components/AllTimeSpacesStats'
+import { StandStats } from '../components/StandsStats'
 import { UserCard } from '../components/UserCard'
 import { User } from '../types/user'
 import { getUsers } from '../utilities/api'
@@ -12,31 +13,10 @@ export default function HomePage () {
     getUsers().then(setUsers).catch(console.log)
   }, [])
 
-  const spaces = getSpacesNames(users)
-  const dates = getDates(users)
-
   return (
     <>
       <AllTimeSpacesStats users={users} />
-      {dates.map(date => (
-        <div key={date}>
-          {date}
-          {spaces.map((space) => (
-            <div key={space}>
-              {space}
-              <div className='grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3'>
-                {users &&
-                  users
-                    .filter((user) => {
-                      return user.spacesByDate && user.spacesByDate[date][space]
-                    })
-                    .map((user) => <UserCard user={user} space={space} date={date} key={user.gatherPlayerId} />)}
-              </div>
-            </div>
-          ))}
-        </div>
-      )
-      )}
+      <StandStats users={users} />
     </>
   )
 }

@@ -1,5 +1,5 @@
 import { User } from '../src/types/user'
-import { getAllTimeSpaceStats, getAllTimeUserSpaceStats, getUserSpaceStatsByDate } from '../src/utilities/user'
+import { getAllTimeSpaceStats, getAllTimeUserSpaceStats, getStandStats, getUserSpaceStatsByDate } from '../src/utilities/user'
 
 const users = [
   {
@@ -12,14 +12,20 @@ const users = [
           lastJoined: 1661023805684,
           timeOnlineInMinutes: 2.2746333333333326,
           steps: 10,
-          lastExited: 1661023883057
+          lastExited: 1661023883057,
+          standsVisited: [
+            'Trybe'
+          ]
         },
         'codecon-2022-sala-2': {
           isOnline: false,
           lastJoined: 1661023805684,
           timeOnlineInMinutes: 3.2746333333333326,
           steps: 40,
-          lastExited: 1661023883057
+          lastExited: 1661023883057,
+          standsVisited: [
+            'SomeStand'
+          ]
         }
       },
       '20/08/2022': {
@@ -28,7 +34,11 @@ const users = [
           lastJoined: 1661023805684,
           timeOnlineInMinutes: 1.2746333333333326,
           steps: 20,
-          lastExited: 1661023883057
+          lastExited: 1661023883057,
+          standsVisited: [
+            'Trybe',
+            'Linux Tips'
+          ]
         }
       }
     }
@@ -43,7 +53,11 @@ const users = [
           lastJoined: 1661023805684,
           timeOnlineInMinutes: 1.2746333333333326,
           steps: 4,
-          lastExited: 1661023883057
+          lastExited: 1661023883057,
+          standsVisited: [
+            'Trybe',
+            'Linux Tips'
+          ]
         }
       },
       '21/08/2022': {
@@ -128,15 +142,26 @@ describe('All Time Space Stats', () => {
         steps: 44,
         interactions: 0,
         messages: 0,
-        timeOnlineInMinutes: 7.0985333333333305
+        timeOnlineInMinutes: 7.0985333333333305,
+        stands: { Trybe: 2, 'Linux Tips': 2 }
       },
       {
         spaceName: 'codecon-2022-sala-2',
         steps: 80,
         interactions: 0,
         messages: 0,
-        timeOnlineInMinutes: 6.549266666666665
+        timeOnlineInMinutes: 6.549266666666665,
+        stands: { SomeStand: 1 }
       }
+    ])
+  })
+
+  it('getStandStats for all users', () => {
+    const stands = getStandStats(users)
+    expect(stands).toMatchObject([
+      { standName: 'Trybe', visitsCount: 2 },
+      { standName: 'Linux Tips', visitsCount: 2 },
+      { standName: 'SomeStand', visitsCount: 1 }
     ])
   })
 })

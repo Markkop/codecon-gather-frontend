@@ -13,6 +13,7 @@ export type Stats = {
   lastJoined?: number,
   lastExited?: number,
   timeOnlineInMinutes?: number
+  standsVisited?: string[]
 }
 
 export type SpaceStats = Record<string, Stats>
