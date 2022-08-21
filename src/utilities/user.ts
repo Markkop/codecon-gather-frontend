@@ -38,7 +38,12 @@ export function getAllTimeSpaceStats (users: User[]) {
         [stand]: 1
       }), {})
     }
-    if (!space) return acc.concat(spaceStatsWithStandsCount)
+    if (!space) {
+      return acc.concat({
+        ...spaceStatsWithStandsCount,
+        uniqueVisitors: 1
+      })
+    }
 
     space.steps += spaceStats.steps || 0
     space.interactions += spaceStats.interactions || 0
@@ -48,6 +53,7 @@ export function getAllTimeSpaceStats (users: User[]) {
       ...stands,
       [stand]: (space.stands[stand] || 0) + 1
     }), space.stands)
+    space.uniqueVisitors += 1
     return acc
   }, [])
 }
@@ -95,9 +101,9 @@ export function getDates (users: User[]) {
 export function getStandStats (users: User[]) {
   const allTimeUserSpaceStats = getAllTimeSpaceStats(users)
   return allTimeUserSpaceStats.reduce((acc, space) => {
-    return acc.concat(Object.entries(space.stands).map(([standName, visitsCount]) => ({
+    return acc.concat(Object.entries(space.stands).map(([standName, uniqueVisitors]) => ({
       standName,
-      visitsCount
+      uniqueVisitors
     })))
   }, [])
 }

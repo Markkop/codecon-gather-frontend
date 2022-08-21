@@ -136,21 +136,30 @@ describe('All Time Space Stats', () => {
 
   it('getAllTimeSpaceStats for all users', () => {
     const allTimeUserSpaceStats = getAllTimeSpaceStats(users)
-    expect(allTimeUserSpaceStats).toMatchObject([
+    expect(allTimeUserSpaceStats).toEqual([
       {
         spaceName: 'codecon-2022-sala-1',
+        uniqueVisitors: 2,
         steps: 44,
         interactions: 0,
         messages: 0,
         timeOnlineInMinutes: 7.0985333333333305,
+        standsVisited: [
+          'Trybe',
+          'Linux Tips'
+        ],
         stands: { Trybe: 2, 'Linux Tips': 2 }
       },
       {
         spaceName: 'codecon-2022-sala-2',
+        uniqueVisitors: 2,
         steps: 80,
         interactions: 0,
         messages: 0,
         timeOnlineInMinutes: 6.549266666666665,
+        standsVisited: [
+          'SomeStand'
+        ],
         stands: { SomeStand: 1 }
       }
     ])
@@ -159,9 +168,9 @@ describe('All Time Space Stats', () => {
   it('getStandStats for all users', () => {
     const stands = getStandStats(users)
     expect(stands).toMatchObject([
-      { standName: 'Trybe', visitsCount: 2 },
-      { standName: 'Linux Tips', visitsCount: 2 },
-      { standName: 'SomeStand', visitsCount: 1 }
+      { standName: 'Trybe', uniqueVisitors: 2 },
+      { standName: 'Linux Tips', uniqueVisitors: 2 },
+      { standName: 'SomeStand', uniqueVisitors: 1 }
     ])
   })
 })

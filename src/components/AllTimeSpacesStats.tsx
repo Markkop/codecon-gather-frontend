@@ -41,7 +41,7 @@ export function AllTimeSpacesStats ({ users }: AllTimeSpacesStatsProps) {
                   {friendlySpaceName[space.spaceName] || space.spaceName}
                 </h2>
                 <ul>
-
+                  <li>🙋 {space.uniqueVisitors || 0}</li>
                   <li>👣 {space.steps || 0}</li>
                   <li>🤏 {space.interactions || 0}</li>
                   <li>💬 {space.messages || 0}</li>

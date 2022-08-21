@@ -39,7 +39,7 @@ export function StandStats ({ users }: StandStatsProps) {
                   {stand.standName}
                 </h2>
                 <ul>
-                  <li>🙋 {stand.visitsCount || 0}</li>
+                  <li>🙋 {stand.uniqueVisitors || 0}</li>
                 </ul>
               </div>
             </div>
