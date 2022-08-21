@@ -7,7 +7,6 @@ export default async function handler (
   res: NextApiResponse<User[]>
 ) {
   try {
-    console.log('opa')
     const users = await getAllUsers()
     if (!users) {
       res.status(200).json([])

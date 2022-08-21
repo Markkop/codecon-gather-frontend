@@ -15,6 +15,4 @@ const UserSchema = new Schema<User>({
   }
 })
 
-console.log(mongoose.models)
-
 export default mongoose?.models?.User || mongoose.model('User', UserSchema)
