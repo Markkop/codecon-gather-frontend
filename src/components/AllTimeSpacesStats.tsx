@@ -33,7 +33,9 @@ export function AllTimeSpacesStats ({ users }: AllTimeSpacesStatsProps) {
         {allTimeSpaceStats.map(space => {
           return (
             <div className='card w-full bg-base-100 shadow-xl' key={space.spaceName}>
-              <figure><img src={spaceImage[space.spaceName] || spaceImage.default} alt={space.spaceName} /></figure>
+              <figure className='bg-black '>
+                <img src={spaceImage[space.spaceName] || spaceImage.default} alt={space.spaceName} className='h-40 object-cover' />
+              </figure>
               <div className='card-body text-sm'>
                 <h2 className='card-title text-sm'>
                   {friendlySpaceName[space.spaceName] || space.spaceName}

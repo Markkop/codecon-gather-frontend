@@ -31,8 +31,8 @@ export function StandStats ({ users }: StandStatsProps) {
         {stands.map(stand => {
           return (
             <div className='card w-full bg-base-100 shadow-xl' key={stand.standName}>
-              <figure>
-                <img src={standImages[stand.standName] || standImages.default} alt={stand.standName} className='max-h-36' />
+              <figure className='bg-black '>
+                <img src={standImages[stand.standName] || standImages.default} alt={stand.standName} className='h-40 object-cover' />
               </figure>
               <div className='card-body text-sm'>
                 <h2 className='card-title text-sm'>
