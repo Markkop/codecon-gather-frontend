@@ -36,9 +36,7 @@ export default function HomePage () {
                   <div className='m-2 grid grid-cols-3 gap-2 lg:grid-cols-6'>
                     {users &&
                   users
-                    .filter((user) => {
-                      return user.spacesByDate && user.spacesByDate[date][space]
-                    })
+                    .filter((user) => user.spacesByDate?.[date]?.[space])
                     .map((user) => <UserCard user={user} space={space} date={date} key={user.gatherPlayerId} />)}
                   </div>
                 </div>
