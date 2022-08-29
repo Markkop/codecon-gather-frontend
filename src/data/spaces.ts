@@ -5,6 +5,7 @@ export const spaceImage = {
   'codecon-2022-happyhour-1': 'https://cdn.gather.town/storage.googleapis.com/gather-town.appspot.com/uploads/mWkpadGDx6dBTlDv/HTTtAn4ezeHLXed9EB5PGH',
   'codecon-2022-happyhour-2': 'https://cdn.gather.town/storage.googleapis.com/gather-town.appspot.com/uploads/aL93ZLLie7531JYj/37qNMI9JIkPwNCvN6ftOUy',
   'Codecon-2022': 'https://cdn.gather.town/storage.googleapis.com/gather-town.appspot.com/uploads/VSqg1CcrGZHUwtaT/NLRDMJxcjLIUVic4XZFxeU',
+  'codecon-2022-atividades': 'https://cdn.gather.town/storage.googleapis.com/gather-town.appspot.com/uploads/SSoqWgxuuoJPlXM7/MeYAXflDsoU84xtikW6Ck0',
   default: 'https://cdn.gather.town/storage.googleapis.com/gather-town.appspot.com/uploads/DfVMRgRjpjJSoK5y/8IQHEaoJOpogX22xI30T8U'
 }
 
@@ -13,6 +14,7 @@ export const friendlySpaceName = {
   'codecon-2022-sala-2': 'Sala 2',
   'codecon-2022-sala-3': 'Sala 3',
   'codecon-2022-happyhour-1': 'HH 1',
-  'codecon-2022-happyhour-2': 'HH 1',
+  'codecon-2022-happyhour-2': 'HH 2',
+  'codecon-2022-atividades': 'Atividades',
   'Codecon-2022': 'Intro'
 }
