@@ -7,6 +7,7 @@ import { getDates, getSpacesNames } from '../utilities/user'
 
 export default function HomePage () {
   const [users, setUsers] = useState<User[]>([])
+  const [sortProperty, setSortProperty] = useState('steps')
 
   useEffect(() => {
     getUsers().then(setUsers).catch(console.log)
@@ -33,10 +34,17 @@ export default function HomePage () {
                   {friendlySpaceName[space]} 🔽
                 </div>
                 <div className='collapse-content'>
+                  <div><a onClick={() => setSortProperty('steps')}>By Steps</a></div>
+                  <div><a onClick={() => setSortProperty('interactions')}>By Interactions</a></div>
+                  <div><a onClick={() => setSortProperty('messages')}>By Messages</a></div>
+                  <div><a onClick={() => setSortProperty('timeOnlineInMinutes')}>By Online Time</a></div>
                   <div className='m-2 grid grid-cols-3 gap-2 lg:grid-cols-6'>
                     {users &&
                   users
                     .filter((user) => user.spacesByDate?.[date]?.[space])
+                    .sort((a: User, b: User) => {
+                      return (b.spacesByDate?.[date]?.[space]?.[sortProperty] || 0) - (a.spacesByDate?.[date]?.[space]?.[sortProperty] || 0)
+                    })
                     .map((user) => <UserCard user={user} space={space} date={date} key={user.gatherPlayerId} />)}
                   </div>
                 </div>
