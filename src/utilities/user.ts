@@ -4,6 +4,11 @@ export function getUserSpaceStatsByDate (user: User, date: string) {
   if (!user.spacesByDate[date]) {
     return []
   }
+
+  if (date.split('/')[2] < '2023') {
+    return []
+  }
+
   return Object.entries(user.spacesByDate[date]).map(([spaceName, spaceStats]) => ({
     spaceName,
     steps: spaceStats.steps || 0,
@@ -15,7 +20,7 @@ export function getUserSpaceStatsByDate (user: User, date: string) {
 }
 
 export function getAllTimeUserSpaceStats (user: User) {
-  const dates = Object.keys(user.spacesByDate)
+  const dates = Object.keys(user.spacesByDate).filter(date => date.split('/')[2] >= '2023')
   const allSpacesStats = dates.map(date => getUserSpaceStatsByDate(user, date)).flat()
   return allSpacesStats.reduce((acc, spaceStats) => {
     const space = acc.find(space => space.spaceName === spaceStats.spaceName)
