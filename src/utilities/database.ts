@@ -18,7 +18,12 @@ export async function getAllUsers (): Promise<User[]> {
   try {
     await connectDatabase()
     const allusers = await UserModel.find({}).lean() as User[]
-    return allusers
+    const users = allusers.filter(user => {
+      const spacesByDate = Object.keys(user.spacesByDate)
+      const spacesByDate2022 = spacesByDate.filter(date => date.split('/')[2] === '2023')
+      return spacesByDate2022.length > 0
+    })
+    return users
   } catch (error) {
     console.log(error)
     return []
