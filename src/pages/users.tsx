@@ -31,7 +31,7 @@ export default function HomePage () {
               <div className='collapse' key={space}>
                 <input type='checkbox' />
                 <div className='collapse-title text-xl font-medium'>
-                  {friendlySpaceName[space]} 🔽
+                  {space} 🔽
                 </div>
                 <div className='collapse-content'>
                   <div><a onClick={() => setSortProperty('steps')}>By Steps</a></div>
