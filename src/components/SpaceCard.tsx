@@ -1,4 +1,4 @@
-import { friendlySpaceName, spaceImage } from '../data/spaces'
+import { friendlySpaceName } from '../data/spaces'
 
 type Space = {
   spaceName: string,
@@ -15,10 +15,8 @@ type Props = {
 
 export function SpaceCard ({ space }: Props) {
   return (
-    <div className='card w-full bg-base-100 shadow-xl' key={space.spaceName}>
-      <figure className='bg-black '>
-        <img src={spaceImage[space.spaceName] || spaceImage.default} alt={space.spaceName} className='h-40 object-cover' />
-      </figure>
+    <div className='card w-full border border-black bg-base-100 shadow-xl' key={space.spaceName}>
+
       <div className='card-body text-sm'>
         <h2 className='card-title text-sm'>
           {friendlySpaceName[space.spaceName] || space.spaceName}
