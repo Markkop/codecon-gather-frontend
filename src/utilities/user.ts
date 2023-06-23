@@ -156,3 +156,25 @@ export function getStandStatsByDate (users: User[], date: string) {
     })))
   }, [])
 }
+
+export function getUserStatsForDate (user: User, date: string) {
+  const userSpaces = user.spacesByDate[date]
+  let totalSteps = 0; let totalInteractions = 0; let totalMessages = 0; let totalTimeOnlineInMinutes = 0; let totalIsOnline = false
+
+  for (const space in userSpaces) {
+    const spaceData = userSpaces[space]
+    totalSteps += spaceData.steps || 0
+    totalInteractions += spaceData.interactions || 0
+    totalMessages += spaceData.messages || 0
+    totalTimeOnlineInMinutes += spaceData.timeOnlineInMinutes || 0
+    totalIsOnline = totalIsOnline || spaceData.isOnline
+  }
+
+  return {
+    steps: totalSteps,
+    interactions: totalInteractions,
+    messages: totalMessages,
+    timeOnlineInMinutes: totalTimeOnlineInMinutes,
+    isOnline: totalIsOnline
+  }
+}

@@ -1,13 +1,20 @@
 import { User } from '../types/user'
+import { getUserStatsForDate } from '../utilities/user'
 
 type Props = {
   user: User;
   space: string;
-  date: string
+  date: string;
+  total?: boolean;
 };
 
-export function UserCard ({ user, space, date }: Props) {
-  const userSpace = user.spacesByDate[date][space]
+export function UserCard ({ user, space, date, total = false }: Props) {
+  let userSpace
+  if (total) {
+    userSpace = getUserStatsForDate(user, date)
+  } else {
+    userSpace = user.spacesByDate[date][space]
+  }
 
   return (
     <div className='card w-full bg-base-100 shadow-xl'>
